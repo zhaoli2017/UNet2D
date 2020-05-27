@@ -1,0 +1,27 @@
+# use a fixed random seed to guarantee that when you run the code twice you will get the same outcome
+manual_seed: 7747
+# data preprocessing configuration
+data:
+  # upper bound for intensity clipping
+  intensity_upper: 0
+  # lower bound for intensity clipping
+  intensity_lower: -250
+  prefix_img: '/home/zli17/data/nifti/nifti/nifti'
+  suffix_img: 'nifti.nii'
+  prefix_label: '/home/zli17/data/nifti/nifti/reader1'
+  suffix_label: 'lungMask_edit.nii.gz'
+  spacing:
+    - 1.7
+    - 1.7
+    - 1.7
+  cropping:
+    - 128
+    - 256
+    - 256
+
+# model configuration
+model:
+  in_dim: 1
+  out_dim: 3
+  num_filters: 4
+
