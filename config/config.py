@@ -14,7 +14,7 @@ def parse_args():
     parser.add_argument('--learning_rate', default=0.0001, type=float, help='Initial learning rate [default: 0.001]')
     parser.add_argument('--device', type=str, default='cuda:0', help='GPU to use [default: GPU 0]')
     parser.add_argument('--optimizer', type=str, default='Adam', help='Adam or SGD [default: Adam]')
-    parser.add_argument('--save_dir', type=str, default='/data/zli17/nifti/output-test-unet2d',help='Path for saving model')
+    parser.add_argument('--save_dir', type=str, default='/data/zli17/nifti/output-test-unet2d-test',help='Path for saving model')
     parser.add_argument('--train_file', type=str, default='/home/zli17/data/nifti/split2d_train/img_slice_list.txt',
                         help='Path for training set')
     parser.add_argument('--val_file', type=str, default='/home/zli17/work/projects/VNet/dataset/val_new.txt',
@@ -30,7 +30,9 @@ def parse_args():
     return parser.parse_args()
 
 def _load_config_yaml(config_file):
-    return yaml.safe_load(open(config_file, 'r'))
+    with open(config_file, 'r') as f:
+        config = yaml.safe_load(f)
+    return config
 
 def load_config():
     args = parse_args()
