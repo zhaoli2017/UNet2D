@@ -52,7 +52,7 @@ def resample(input_image, target_spacing=(0.5, 0.5, 0.5)):
     scale = [target_spacing[index] / origin_spacing[index] for index in range(len(origin_size))]
     new_size = [int(origin_size[index] / scale[index]) for index in range(len(origin_size))]
     resample = sitk.ResampleImageFilter()
-    resample.SetInterpolator(sitk.sitkLinear)
+    resample.SetInterpolator(sitk.sitkNearestNeighbor)
     resample.SetDefaultPixelValue(0)
     resample.SetOutputSpacing(target_spacing)
     resample.SetOutputOrigin(input_image.GetOrigin())
