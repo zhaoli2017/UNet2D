@@ -85,7 +85,8 @@ def val_per_epoch(epoch_idx, val_loader, model, loss_func, opt, args=None, confi
         label_tensor = label_tensor.squeeze(0)
         image_tensor = image_tensor.to(config.get('device'))
         #logger.debug(f'image_tensor shape: {image_tensor.shape}')
-        out = model(image_tensor)
+        with torch.no_grad():
+            out = model(image_tensor)
 
         loss = loss_func(out, label_tensor.long().to(config.get('device')))
         loss_value = loss.data.cpu().numpy()
