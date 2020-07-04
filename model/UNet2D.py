@@ -123,3 +123,7 @@ if __name__ == "__main__":
 
     out = model(x)
     print("out size: {}".format(out.size()))
+
+    from torchsummary import summary
+    print(model)
+    summary(model.cuda(), (1, 256, 256))
