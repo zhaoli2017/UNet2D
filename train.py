@@ -113,7 +113,7 @@ def main():
 
     # create model
     logger.info('creating model...')
-    model = UNet2D(in_dim=config.get('model').get('in_dim')).to(config.get('device'))
+    model = UNet2D(config.get('model').get('in_dim')).to(config.get('device'))
     if args.verbose:
         summary(model, (1, 256, 256))
 

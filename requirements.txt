@@ -1,1 +1,3 @@
 SimpleITK==1.2.4
+torchsummary
+PyYAML==5.3.1

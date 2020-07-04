@@ -18,10 +18,12 @@ def get_dice(pred, organ_target, num_class):
     return dice/(num_class-1)
 
 class DiceLoss(nn.Module):
-    def __init__(self, num_class=3):
+    def __init__(self, num_class=3, args=None, config=None):
         super().__init__()
         self.num_class = num_class
         self.num_organ = self.num_class - 1
+        self.args = args
+        self.config = config
 
     def forward(self, pred, target):
         shape = target.shape
@@ -33,7 +35,7 @@ class DiceLoss(nn.Module):
             temp_target[target == organ_index] = 1
             organ_target[:, organ_index, :, :] = temp_target
 
-        organ_target = organ_target.cuda()
+        organ_target = organ_target.to(self.config.get('device'))
 
         return 1-get_dice(pred, organ_target, self.num_class).mean()
 
