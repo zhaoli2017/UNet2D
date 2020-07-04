@@ -133,7 +133,7 @@ def main():
                               )
 
     # loss function
-    loss_func = DiceLoss()
+    loss_func = DiceLoss(args=args, config=config)
 
     # optimizer
     opt = torch.optim.Adam(
